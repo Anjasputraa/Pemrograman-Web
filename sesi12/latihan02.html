@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Json 3</title>
+</head>
+
+<body>
+
+    <h3>List Data User</h3>
+    <div id="tampil"></div>
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>nama</th>
+                <th>Email</th>
+                <th>User Name</th>
+                <th>Action</th>
+            </tr>
+        </thead> -->
+        <!-- <tbody>
+            <tr>
+                <td>#</td>
+                <td>nama</td>
+                <td>Email</td>
+                <td>User Name</td>
+                <td>Action</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET", "https://webpro.ptov.my.id/api/curduser.php?aksi=get");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            //console.log(dta);
+            let tx = ' <table> <thead> <tbody> <tr> <th>#</th> <th>nama</th> <th>Email</th> <th>User Name</th> <th>Action</th> </tr> </thead>';
+            let no = 1;
+            
+            for(let i=0; i<dta.isi.length;i++){
+                tx += '<tr>';
+                    tx += '<td>'+no+'</td>';
+                    tx += '<td>'+dta.isi[i][0]+'</td>';    
+                    tx += '<td>'+dta.isi[i][1]+'</td>';    
+                    tx += '<td>'+dta.isi[i][2]+'</td>';       
+                    tx += '<td><a href="latihan02-edit.html?id='+dta.isi[i][3]+'">Edit</a>'
+                    tx += '<a href="latihan02-del.html?id='+dta.isi[i][3]+'">Hapus</td>';
+                    tx += '</tr>';
+                    no++;
+                    }
+                    tx += '</tbody></table>';
+                    document.getElementById("tampil").innerHTML = tx;
+                    console.log(dta);
+        }
+    </script>
+
+</body>
+
+</html>

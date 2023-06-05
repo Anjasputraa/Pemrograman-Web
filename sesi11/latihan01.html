@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data Json 01</title>
+</head>
+<body>
+    
+    Nama        : <span id="txNAMA"></span> <br>
+    Alamat      : <div id="txALAMAT"></div> <br>
+    Tgl Lahir   : <input type="date" id="txTGL_LAHIR"> <br>
+    Email       : <div id="txEMAIL"></div> <br>
+    Jurusan     : <div id="txJURUSAN"></div> <br>
+
+    <div id="TampilData"></div>
+
+<script>
+    const jsHTTP = new XMLHttpRequest();
+    jsHTTP.open("GET","http://localhost/latihan/sesi11/latihan01.php");
+    jsHTTP.send();
+
+    jsHTTP.onload = function(){
+        const dta = JSON.parse(this.responseText);
+        console.log(dta);
+        let tx = "<h3>List Data</h3>";
+        tx +=    "<table><tr><th>#</th><th>Nama</th><th>Alamat</th><th>Tgl Lahir</th><th>Email</th><th>Jurusan</th></tr>";
+            let no = 1;
+            for(let i=0; i<dta.length;i++){
+                tx += "<tr>";
+                tx += "<td>"+no+"</td>";
+                tx += "<td>"+dta[i].nama+"</td>";    
+                tx += "<td>"+dta[i].alamat+"</td>";    
+                tx += "<td>"+dta[i].tgl_lahir+"</td>";    
+                tx += "<td>"+dta[i].email+"</td>";    
+                tx += "<td>"+dta[i].jurusan+"</td>";   
+                tx += "</tr>";
+                no++;
+            }
+        tx += "</table>";
+        document.getElementById("TampilData").innerHTML     = tx;
+
+    }
+</script>
+
+</body>
+</html>
+
+<!-- document.getElementById("txNAMA").innerHTML     = dta[2].nama;
+document.getElementById("txALAMAT").innerHTML   = dta[2].alamat;
+document.getElementById("txTGL_LAHIR").value    = dta[2].tgl_lahir;
+document.getElementById("txEMAIL").innerHTML    = dta[2].email;
+document.getElementById("txJURUSAN").innerHTML  = dta[2].jurusan; -->
+
+<!-- document.getElementById("txNAMA").innerHTML     = dta.nama;
+document.getElementById("txALAMAT").innerHTML   = dta.alamat;
+document.getElementById("txTGL_LAHIR").value    = dta.tgl_lahir;
+document.getElementById("txEMAIL").innerHTML    = dta.email;
+document.getElementById("txJURUSAN").innerHTML  = dta.jurusan; -->
+
+<!-- document.getElementById("txALAMAT").innerHTML   = dta[1].alamat;
+document.getElementById("txTGL_LAHIR").value    = dta[1].tgl_lahir;
+document.getElementById("txEMAIL").innerHTML    = dta[1].email;
+document.getElementById("txJURUSAN").innerHTML  = dta[1].jurusan; -->
+
