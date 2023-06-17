@@ -77,8 +77,24 @@
                 let LU = P*L;
                 // output
                 let tx = "Hasil:<br> Hitung Luas Persegi dengan nilai Panjang "+P+" dan lebar "+ L;
-                tx += "adalah:<br>Luas = Panjang X Lebar<br>";
+                tx += " adalah:<br>Luas = Panjang X Lebar<br>";
                 tx += "= "+P+" X "+L+"<br>";
+                tx += "= "+ LU+"<br>Jadi luasnya adalah "+ LU;
+
+                $("#hasil").html(tx);
+                $("#hasil").show(1500);
+            });
+
+            $(".cmdLSegi3").click(function(){
+                // get input nilai
+                let A = $(".AL").val();
+                let T = $(".TG").val();
+                // proses 
+                let LU = A*T;
+                // output
+                let tx = "Hasil:<br> Hitung Luas Segitiga dengan nilai Alas "+A+" dan Tinggi "+ T;
+                tx += " adalah :<br>Luas = Alas X Tinggi<br>";
+                tx += "= "+A+" X "+T+"<br>";
                 tx += "= "+ LU+"<br>Jadi luasnya adalah "+ LU;
 
                 $("#hasil").html(tx);
